@@ -1,6 +1,5 @@
 <template>
 <div id = "root">
-  rrr
    <h1 @click="clickAPEX">{{titleOne}}</h1>
 </div>
 </template>

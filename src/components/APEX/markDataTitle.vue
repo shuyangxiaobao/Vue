@@ -1,8 +1,11 @@
 <template>
   <div id="markDataTitle">
-    <h1 @click="clickAPEX">dianji</h1>
+    <div id="mark">
+      <p id="markTitle">Market Data</p>
+      <img :src="moreImg" alt id="moreimg" />
+    </div>
     <ul>
-      <li v-for="item,index in datas" :key="index">
+      <li v-for="(item,index) in datas" :key="index" @click="liClick(item)">
         <div class="divdata">
           <div style="display: flex;flex-direction: column;width: 80.3%;">
             <div id="topView">
@@ -15,15 +18,22 @@
               <label for class="upperDownClass">{{item.upDownPercent/100}}%</label>
             </div>
           </div>
-          <img src="../../assets/Collection-Click@3x.png" alt class="collectimg" />
+          <!-- "../../assets/Collection@3x.png" -->
+          <img v-if="item.collectStatus" :src="collectClick" class="collectimg" />
+          <img v-if="!item.collectStatus" :src="collect" class="collectimg" />
+          <!-- <img src="@../../assets/banner.png" alt=""> -->
         </div>
       </li>
     </ul>
   </div>
-
 </template>
 
 <script>
+// let imgurl = ""
+import collect from "../../assets/Collection@3x.png";
+import collectClick from "../../assets/Collection-Click@3x.png";
+import moreImg from "../../assets/more@3x.png";
+
 export default {
   name: "RootName",
   props: {
@@ -35,7 +45,10 @@ export default {
   data() {
     return {
       titleOne: "APEX",
-      datas: []
+      datas: [],
+      collect: collect,
+      collectClick: collectClick,
+      moreImg: moreImg
     };
   },
   methods: {
@@ -54,11 +67,31 @@ export default {
         success: function(data) {
           //请求成功完成后要执行的方法
           console.log(data);
+          // for (var key in data.data) {
+          //   var value = data.data[key];
+          //   if (value.collectStatus === true) {
+          //     value.collecturl = "../../assets/banner.png";
+          //   } else {
+          //     value.collecturl = "../../assets/Collection-Click@3x.png";
+          //   }
+          //   value.collecturl =
+          //     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572276227338&di=e5ad63ad5fb0726f9191a6a9b164d96e&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201807%2F09%2F20180709235634_HEh8H.thumb.700_0.jpeg";
+          //   value.collecturl = "../../assets/banner.png";
+          //   obj.datas.push(value);
+          // }
           obj.datas = data.data;
           console.log("😄");
         }
       });
+    },
+
+    liClick: function(model) {
+      alert(model.lastPrice);
     }
+  },
+
+  mounted: function() {
+    this.loadData(this);
   }
 };
 </script>
@@ -198,5 +231,34 @@ export default {
   color: #7e829d;
   font-size: 11px;
   margin: 9px 0 21px 5.3%;
+}
+
+#mark {
+  width: 100%;
+  height: 24px;
+  /* background-color: #fc3e30; */
+  margin-top: 10px;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+#markTitle {
+  /* padding: 0 0 0 15px; */
+  font-size: 16px;
+  color: #ffffff;
+  text-align: left;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0 0 15px;
+  margin: 0;
+}
+#moreimg {
+  width: 16px;
+  height: 16px;
+  margin: 4px 15px 0 0 ;
+  text-align: right;
 }
 </style>

@@ -1,10 +1,13 @@
 <template>
   <div id="homediv">
     <!-- <h1 @click="clickAPEX">{{titleOne}}</h1> -->
-    <TopView @clicknow1="clicknow2" title="Home"></TopView>
+    <!-- <div> -->
+          <TopView @clicknow1="clicknow2" title="Home" id="TopViewid"></TopView>
+    <!-- </div> -->
+    <div id="tempDiv"></div>
     <img src="../../assets/banner@3x.png" alt="" id="banner">
-    <!-- <Advertise></Advertise> -->
     <MarkDataTitle></MarkDataTitle>
+    <HomeNews></HomeNews>
   </div>
 </template>
 
@@ -12,7 +15,7 @@
 import TopView from "@/components/APEX/topView";
 import Advertise from "@/components/APEX/advertise";
 import MarkDataTitle from "@/components/APEX/markDataTitle";
-
+import HomeNews from './homeNews';
 export default {
   name: "HomeName",
   props: {
@@ -37,7 +40,8 @@ export default {
   components: {
     TopView,
     Advertise,
-    MarkDataTitle
+    MarkDataTitle,
+    HomeNews,
   }
 };
 </script>
@@ -50,10 +54,14 @@ export default {
   /* height: 812px; */
   padding: 0;
   margin: 0;
+  position: relative;
 }
 
 #banner{
+
   width: 95%;
-  padding-top: 5px;  
+  padding-top: 44px;  
 }
+
+
 </style>

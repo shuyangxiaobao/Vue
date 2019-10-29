@@ -1,73 +1,95 @@
 <template>
-<div id = "root">
+  <div id="root">
     <div id="boxone">
-        <img src="../../assets/menu@3x.png" alt="" id="menu" @click="clickMenu">
-           <span @click="clickAPEX" id="title">{{title}}</span>
-        <img src="../../assets/Message@3x.png" alt="" id="message" @click="clickMessage">
-rtrt
+      <img src="../../assets/menu@3x.png" alt id="menu" @click="clickMenu" />
+      <span @click="clickAPEX" id="title">{{title}}</span>
+      <img src="../../assets/Message@3x.png" alt id="message" @click="clickMessage" />
     </div>
-</div>
+  </div>
 </template>
 
 <script>
+var screenWidth = document.body.scrollWidth  ;
+// var screenWidth = window.screen.width;
+ 
+
+ 
+
+
 export default {
-  name: 'RootName',
-  props:{
-    title:{
-      type:String,
-      default:"nimeide"
+  name: "RootName",
+  props: {
+    title: {
+      type: String,
+      default: "nimeide"
     }
   },
-  data () {
+  data() {
     return {
-      titleOne: 'Home'
+      titleOne: "Home",
+      screenWidth: screenWidth
+    };
+  },
+  methods: {
+    clickAPEX: function() {
+      console.log("3333");
+      // this.$router.push({ name:'GQB'  })
+    },
+    clickMenu: function() {
+      alert("menu");
+      this.$emit("clicknow1");
+    },
+    clickMessage: function() {
+      alert("message");
+      alert(this.screenWidth);
     }
   },
-  methods:{
-    clickAPEX:function(){
-      console.log('3333');
-        // this.$router.push({ name:'GQB'  })
-    },
-     clickMenu:function(){
-        alert('menu');
-		this.$emit('clicknow1');
-    },
-    clickMessage:function(){
-        alert('message');
-    }
+  beforeUpdate:function(){
+    // $("#boxone").css("width", this.screenWidth);
+  },
+
+  mounted: function() {
+    // $("#boxone").css("width", this.screenWidth);
   }
-  
+};
+
+window.onresize = function(){
+    // $("#boxone").css("width", this.screenWidth);
+        // $("#boxone").css("width", screenWidth);
+        // alert(screenWidth);
+      // alert(screenWidth);
 
 }
-
 </script>
 
 
 <style>
-#root{
-    height:44px;
-    width:100%;
+#root {
+  height: 44px;
 }
-#boxone{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    /* background-color: aqua; */
-    height: 44px
+#boxone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+  background-color: #21212b;
+  width: 100%;
+  position: fixed;
 }
-#menu,#message{
-    width: 24px;
-    height: 24px;
-    padding-left:15px;
+#menu,
+#message {
+  width: 24px;
+  height: 24px;
+  padding-left: 15px;
 }
-#message{
-    padding-right:15px;
+#message {
+  padding-right: 15px;
 }
-#title{
-    font-size: 20px;
-    color: #ffffff;
-    height: 20px;
-    line-height: 20px;
+#title {
+  font-size: 20px;
+  color: #ffffff;
+  height: 20px;
+  line-height: 20px;
 }
 </style>
