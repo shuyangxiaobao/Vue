@@ -72,10 +72,12 @@ window.onresize = function(){
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 44px;
+  height: 64px;
   background-color: #21212b;
   width: 100%;
   position: fixed;
+  /* z-index: 999; */
+  top: 0;
 }
 #menu,
 #message {
@@ -91,5 +93,6 @@ window.onresize = function(){
   color: #ffffff;
   height: 20px;
   line-height: 20px;
+  text-align: center;
 }
 </style>

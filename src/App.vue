@@ -32,6 +32,7 @@ export default {
   margin: 0;
   padding: 0;
   background-color: #21212b;
+  position: relative;
 }
 ol,
 ul {
